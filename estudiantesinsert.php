@@ -11,11 +11,10 @@ require("auth.php");
     <link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link href="css/custom.css" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://kit.fontawesome.com/526b5726f8.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-
   </head>
 <body>
     <nav class="navbar navbar-expand-lg">
@@ -63,7 +62,7 @@ require("auth.php");
 </nav>
 <br>
 <div class="container">
-<form id="frm" method="POST">
+<form action="agregarestudiante.php" method="POST">
     <div class="row">
 
         <div class="col-md form-group">
@@ -97,25 +96,11 @@ require("auth.php");
           <small id="helpId" class="text-muted">Campo no es obligatorio</small>
         </div>           
     </div>
-    <button type="submit" class="btn btn-primary" name="guardar" id="guardar">Agregar</button>
+    <button type="submit" class="btn btn-primary" name="guardar">Agregar</button>
     <input type="reset" class="btn btn-danger" value="Limpiar">
     </form>
     <div style='height: 20px;'></div>
-    <script>
-        $(document).ready(function(){
-            $("#guardar").click(function(){
-                $.ajax({
-                    url:'agregarestudiante.php',
-                    method:'POST',
-                    data: $("#frm").serialize(), 
-                    success:function(d){
-                       alert(d);
-                       $("#frm")[0].reset();
-                   }
-                });
-            });
-        });
-    </script>
+
 </div>  
 </body>
 </html>

@@ -9,11 +9,9 @@ $sapellido = mysqli_real_escape_string($conexion, $_REQUEST['sapellido']);
 
 $sql = "INSERT INTO estudiantes (pnombre, snombre, papellido, sapellido, cif) VALUES ('$pnombre', '$snombre', '$papellido', '$sapellido', '$cif')";
 if(mysqli_query($conexion, $sql)){
-    //header("location: estudiantes.php");
-    echo '<script type="text/javascript">'; 
-    echo 'alert("Mensaje: Datos agregados exitosamente");'; 
-    echo 'window.location.href = "estudiantes.php";';
-    echo '</script>';
+
+    echo "Mensaje: Datos agregados exitosamente"; 
+
 } else{
     echo "ERROR: Could not able to execute $sql. " . mysqli_error($conexion);
 }
