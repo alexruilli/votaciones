@@ -15,7 +15,8 @@ require("auth.php");
     <script src="https://kit.fontawesome.com/526b5726f8.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8.18.6/dist/sweetalert2.all.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-bootstrap-4@2.2.1/bootstrap-4.min.css">
   </head>
 <body>
     <nav class="navbar navbar-expand-lg">
@@ -72,8 +73,8 @@ require("auth.php");
           <small id="helpId" class="text-muted">Campo es obligatorio</small>
         </div>
 
-</div>
-<div class="row">
+     </div>
+      <div class="row">
         <div class="col-md form-group">
           <label for="">Primer Nombre</label>
           <input type="text" name="pnombre" id="" class="form-control" placeholder="" aria-describedby="helpId" required>
@@ -97,24 +98,25 @@ require("auth.php");
           <small id="helpId" class="text-muted">Campo no es obligatorio</small>
         </div>           
     </div>
-    <button type="submit" class="btn btn-primary" name="guardar" id="guardar">Agregar</button>
+    <input type="submit" class="btn btn-primary" name="guardar" id="save" value="Guardar">
     <input type="reset" class="btn btn-danger" value="Limpiar">
     </form>
     <div style='height: 20px;'></div>
     <script>
-        $(document).ready(function(){
-            $("#guardar").click(function(){
-                $.ajax({
-                    url:'agregarestudiante.php',
-                    method:'POST',
-                    data: $("#frm").serialize(), 
-                    success:function(d){
-                       alert(d);
-                       $("#frm")[0].reset();
-                   }
-                });
-            });
-        });
+    $(function(){
+            $("#save").click(function(e){
+              e.preventDefault();
+              var datos = $("#frm").serialize(); 
+              $.ajax({
+              type: "POST", 
+              url: "agregarestudiante.php",
+              data: datos, 
+              success: function(data){ Swal.fire('Mensaje', data, 'success'); $("#frm")[0].reset(); }, 
+              error: function(data) { Swal.fire('Mensaje', data, 'error') }
+              });
+          });
+    });
+
     </script>
 </div>  
 </body>
