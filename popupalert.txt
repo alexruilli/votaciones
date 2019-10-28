@@ -1,0 +1,21 @@
+    echo '<script type="text/javascript">'; 
+    echo 'alert("Usuario o Contraseña invalido");'; 
+    echo 'window.location.href = "../login.php";';
+    echo '</script>';
+
+    if ($error = '1'){   
+        echo "
+        <div class='alert alert-danger' role='alert'>
+          <h4 class='alert-heading text-center'>¡Error!</h4>
+          <p>No se a podido ingresar usarios o contraseña erroneo, verificar sus datos.</p>
+          <p class='mb-0'></p>
+        </div>";}
+    ?>
+    <?php if($succes="1"){
+      echo "     <div class='alert alert-success' role='alert'>
+      <h4 class='alert-heading'>Exitoso!</h4>
+      <p>Los datos se agregaron correctamente</p>
+      <p class='mb-0'></p>
+    </div>";
+
+    }?>

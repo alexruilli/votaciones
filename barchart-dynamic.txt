@@ -1,0 +1,59 @@
+<div id="container" style="width: 75%; padding:2% 5%">
+
+
+<canvas id="canvas"></canvas>
+</div>
+<script>
+
+		var color = Chart.helpers.color;
+		var barChartData = {
+			labels: [<?php 
+        
+        $sql = "SELECT concat(nombre, ' ', apellido) ncandidato from candidatos";
+        $result = $conexion->query($sql);
+        while($registro = mysqli_fetch_array($result)) {
+          ?>
+          '<?php echo $registro["ncandidato"]; ?>',
+          <?php
+        }
+          ?>],
+			datasets: [ {
+				label: 'Candidatos',
+				backgroundColor: color(window.chartColors.blue).alpha(0.5).rgbString(),
+				borderColor: window.chartColors.blue,
+				borderWidth: 1,
+				data: [<?php 
+
+          $sql = "SELECT idcandidato, count(*) as totalvotos FROM votos group by idcandidato";
+          $result = $conexion->query($sql);
+          while($nvotos = mysqli_fetch_array($result))
+          {?>
+          '<?php echo $nvotos["totalvotos"]; ?>', 
+          <?php
+          }
+          ?>
+          ]
+			}]
+
+		};
+
+		window.onload = function() {
+			var ctx = document.getElementById('canvas').getContext('2d');
+			window.myBar = new Chart(ctx, {
+				type: 'bar',
+				data: barChartData,
+				options: {
+					responsive: true,
+					legend: {
+						position: 'top',
+					},
+					title: {
+						display: true,
+						text: 'Votaciones FIUEES'
+					}
+				}
+			});
+
+		};
+
+  </script>
