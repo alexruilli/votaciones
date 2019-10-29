@@ -8,15 +8,22 @@ $papellido = mysqli_real_escape_string($conexion, $_REQUEST['papellido']);
 $sapellido = mysqli_real_escape_string($conexion, $_REQUEST['sapellido']);
 
 $sql = "INSERT INTO estudiantes (pnombre, snombre, papellido, sapellido, cif) VALUES ('$pnombre', '$snombre', '$papellido', '$sapellido', '$cif')";
+$result = $conexion->query($sql);
+/*
 if(mysqli_query($conexion, $sql)){
-    //header("location: estudiantes.php");
-    echo '<script type="text/javascript">'; 
-    echo 'alert("Mensaje: Datos agregados exitosamente");'; 
-    echo 'window.location.href = "estudiantes.php";';
-    echo '</script>';
+
+    echo "Mensaje: Datos agregados exitosamente"; 
+
 } else{
     echo "ERROR: Could not able to execute $sql. " . mysqli_error($conexion);
 }
+*/
 
-mysqli_close($conexion);
+if($sql){
+    echo "Datos agregados exitosamente"; 
+}
+else{
+    echo "Datos no agregados exitosamente"; 
+}
+
 ?>

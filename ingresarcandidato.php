@@ -10,12 +10,13 @@ require("auth.php");
     <link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32" />
     <link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <link href="css/custom.css" rel="stylesheet">    
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>  
-  <script src="https://kit.fontawesome.com/526b5726f8.js" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-  <script src="https://cdn.ckeditor.com/4.13.0/standard/ckeditor.js"></script>
+    <link href="css/custom.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://kit.fontawesome.com/526b5726f8.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.ckeditor.com/4.13.0/standard/ckeditor.js"></script>
+    
   </head>
 <body>
     <nav class="navbar navbar-expand-lg">
@@ -63,14 +64,16 @@ require("auth.php");
 </nav>
 <br>
 <div class="container">
-<form method="POST" action="agregarcandidato.php" enctype="multipart/form-data">
+<form action="agregarcandidato.php" method="POST">
     <div class="row">
+
         <div class="col-md form-group">
           <label for="">CIF</label>
           <input type="text" name="cif" id="" class="form-control" placeholder="CIF sin guiones" aria-describedby="helpId" required minlength="10" maxlength="11" pattern="[0-9]{10,11}" title="Escribir CIF sin guiones para alumnos antiguos">
           <small id="helpId" class="text-muted">Campo es obligatorio</small>
         </div>
-    </div>
+
+</div>
 <div class="row">
         <div class="col-md form-group">
           <label for="">Nombre</label>
@@ -82,13 +85,7 @@ require("auth.php");
           <input type="text" name="apellido" id="" class="form-control" placeholder="" aria-describedby="helpId" required>
           <small id="helpId" class="text-muted">Campo es obligatorio</small>
         </div>      
-        <div class="col-md form-group">
-          <div class="custom-file">
-            <input type="file" class="custom-file-input" id="customFile" name="customFile">
-            <label class="custom-file-label" for="customFile">Choose file</label>
-          </div>
-        </div>
-</div>
+    </div>
     <div class="row">
     <div class="col-md form-group">
     <label for="descripcion">Descripción</label>
@@ -107,8 +104,5 @@ require("auth.php");
     </form>
   <div style='height: 20px'></div> 
 </div>  
-<script src="js/jquery-3.2.1.min.js"></script>
-  <script src="js/functions.js"></script>
-  
 </body>
 </html>
