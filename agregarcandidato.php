@@ -1,7 +1,28 @@
 <?php
 require('config\db.php');
+require('helpers/helpers.php'); 
+require('models/candidato.php');
 
-$cif = mysqli_real_escape_string($conexion, $_REQUEST['cif']);
+$candidato = new candidato;
+
+if( is_uploaded_file($_FILES['customFile']['tmp_name'] )){
+    if($candidato->imagen($_FILES['customFile'], null)){
+        if($candidato->saveFile($_FILES['customFile'], $candidato->getRoot(), $candidato->getImage() )){
+            print 'exito';
+        }
+        else{
+            print 'no se guardo el archivo';
+        }
+    }
+    else{
+        print 'fallo con la imagen';
+    }
+}
+else{
+    print 'fallo';
+}
+
+/*$cif = mysqli_real_escape_string($conexion, $_REQUEST['cif']);
 $nombre= mysqli_real_escape_string($conexion, $_REQUEST['nombre']);
 $apellido = mysqli_real_escape_string($conexion, $_REQUEST['apellido']);
 $descripcion = mysqli_real_escape_string($conexion, $_REQUEST['descripcion']);
@@ -16,4 +37,5 @@ if(mysqli_query($conexion, $sql)){
 }
 
 mysqli_close($conexion);
+*/
 ?>
