@@ -83,6 +83,7 @@ require("auth.php");
           <small id="helpId" class="text-muted">Campo es obligatorio</small>
         </div>      
         <div class="col-md form-group">
+        <label for="">Subir foto</label>
           <div class="custom-file">
             <input type="file" class="custom-file-input" id="customFile" name="customFile">
             <label class="custom-file-label" for="customFile">Choose file</label>
