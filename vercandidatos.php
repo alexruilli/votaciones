@@ -72,6 +72,8 @@ require("auth.php");
 <th data-column-id="snombre">Apellido</th>
 <th data-column-id="papellido">Propuesta</th>
 <th data-column-id="sapellido">Descripción</th>
+<th data-column-id="sapellido">Foto</th>
+<th data-column-id="sapellido">Acciones</th>
 </tr>
 </thead>
 <tbody>
@@ -79,12 +81,28 @@ require("auth.php");
                             include ('config\db.php');
                             $sql = $conexion->query('SELECT * FROM candidatos');
                             while($data = $sql->fetch_array()) {
+                                $foto = '<img src="fotos/'.$data['foto'].'" height="120" width="120">';
                                 echo '
                                     <tr>
                                         <td>'.$data['nombre'].'</td>
                                         <td>'.$data['apellido'].'</td>
                                         <td>'.$data['propuesta'].'</td>
                                         <td>'.$data['descripcion'].'</td>
+                                        <td>'.$foto.'</td>
+                                        <td> 
+                                          <form method="POST" action="editarCandidato.php">
+                                            <input name="_method" type="hidden" value="PUT">
+                                            <input name="id" type="hidden" value='.$data['idcandidato'].'>
+                                            <button type="submit" class="btn btn-primary text-white">Editar</button>
+                                          </form> 
+                                        </td>
+                                        <td>
+                                          <form method="POST" action="mantenimientoCandidato.php">
+                                            <input name="_method" type="hidden" value="DELETE">
+                                            <input name="id" type="hidden" value='.$data['idcandidato'].'>
+                                            <button type="submit" class="btn btn-danger text-white">Eliminar</button>
+                                          </form> 
+                                        </td>
                                     </tr>
                                 ';
                             }
