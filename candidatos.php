@@ -18,8 +18,8 @@ require("auth.php");
   <script src="https://cdn.ckeditor.com/4.13.0/standard/ckeditor.js"></script>
   </head>
 <body>
-    <nav class="navbar navbar-expand-lg">
-  <a class="navbar-brand" href="#"> <img src="img/logow.png" width="50" height="30" class="d-inline-block align-top" alt="">Sistema Votacion</a>
+<nav class="navbar navbar-expand-lg">
+  <a class="navbar-brand" href="#"><img src="img/logow.png" width="50" height="30" class="d-inline-block align-top" alt="">Sistema Votacion</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"> <i class="fas fa-bars" style="color:#fff; font-size:28px;"></i></span>
   </button>
@@ -28,6 +28,15 @@ require("auth.php");
   <ul class="navbar-nav mr-auto">
       <li class="nav-item">
         <a class="nav-link" href="administracion.php">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Administradores
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="veradmin.php">Ver</a>
+          <a class="dropdown-item" href="administradores.php">Agregar</a>
+        </div>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -51,16 +60,7 @@ require("auth.php");
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Resultados
         </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="vervotos.php">Ver Votos</a>
-          <a class="dropdown-item" href="verestadisticas.php">Ver Estadisticas</a>
-        </div>
-      </li>     
-    </ul>
-    <span class="navbar-text" style="padding-right:10px; color:#ffffff;">Usuario: <?php echo $usuario?> | </span>   
-    <a class="navbar-logout" href="config/logout.php" style="color:#fff;"><i class="fas fa-sign-out-alt"></i>Salir</a>
-    </div>
-</nav>
+      
 <br>
 <div class="container">
 <form method="POST" action="agregarcandidato.php" enctype="multipart/form-data">
@@ -83,6 +83,7 @@ require("auth.php");
           <small id="helpId" class="text-muted">Campo es obligatorio</small>
         </div>      
         <div class="col-md form-group">
+        <label for="">Subir foto</label>
           <div class="custom-file">
             <input type="file" class="custom-file-input" id="customFile" name="customFile">
             <label class="custom-file-label" for="customFile">Choose file</label>

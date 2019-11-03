@@ -33,6 +33,15 @@ require("auth.php");
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Administradores
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="veradmin.php">Ver</a>
+          <a class="dropdown-item" href="administradores.php">Agregar</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Estudiantes
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -73,7 +82,7 @@ require("auth.php");
 <th data-column-id="papellido">Propuesta</th>
 <th data-column-id="sapellido">Descripción</th>
 <th data-column-id="sapellido">Foto</th>
-<th data-column-id="sapellido">Acciones</th>
+<th data-column-id="Acciones">Acciones</th>
 </tr>
 </thead>
 <tbody>
@@ -94,9 +103,7 @@ require("auth.php");
                                             <input name="_method" type="hidden" value="PUT">
                                             <input name="id" type="hidden" value='.$data['idcandidato'].'>
                                             <button type="submit" class="btn btn-primary text-white">Editar</button>
-                                          </form> 
-                                        </td>
-                                        <td>
+                                          </form>
                                           <form method="POST" action="mantenimientoCandidato.php">
                                             <input name="_method" type="hidden" value="DELETE">
                                             <input name="id" type="hidden" value='.$data['idcandidato'].'>
