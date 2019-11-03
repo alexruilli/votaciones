@@ -57,7 +57,19 @@
             
         }
         else if($_POST['_method'] == 'DELETE'){
-            print 'vas a eliminar';   
+            $id = $_POST['id'];
+            $sql = "DELETE FROM candidatos WHERE idcandidato='$id'";
+            if(mysqli_query($conexion, $sql)){
+                if ($candidato->deleteFile($candidato->getRoot(), $_POST['foto'])) {
+                    header("location: vercandidatos.php");
+                }
+                else{
+                    print 'no se pudo eliminar la foto';
+                }
+                
+            } else{
+                echo "ERROR: Could not able to execute $sql. " . mysqli_error($conexion);
+            }
         }
         else{
             print 'metodo no existente';
