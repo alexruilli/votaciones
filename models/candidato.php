@@ -46,20 +46,5 @@
             return $this->image_candidato;
         }
 
-        function guardar(array $fields){
-            //require('config\db.php');
-            $mysqli = new mysqli("localhost", "root", "", "votaciones");
-            if($mysqli->connect_error) {
-            exit('Error connecting to database'); //Should be a message a typical user could understand in production
-            }
-            mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
-            $mysqli->set_charset("utf8mb4");
-
-            $stmt = $mysqli->prepare("INSERT INTO candidatos VALUES (NULL, ?, ?, ?, ?, ?, ?)");
-            $stmt->bind_param(111,11);
-            $stmt->execute();
-            $stmt->close();
-        }
-
     }
 ?>
