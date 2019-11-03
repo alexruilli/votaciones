@@ -107,6 +107,7 @@ require("auth.php");
                                           <form method="POST" action="mantenimientoCandidato.php">
                                             <input name="_method" type="hidden" value="DELETE">
                                             <input name="id" type="hidden" value='.$data['idcandidato'].'>
+                                            <input name="foto" type="hidden" value='.$data['foto'].'>
                                             <button type="submit" class="btn btn-danger text-white">Eliminar</button>
                                           </form> 
                                         </td>
