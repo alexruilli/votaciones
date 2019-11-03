@@ -1,5 +1,10 @@
 <?php
-require("auth.php");
+  require("auth.php");
+  require('config/db.php');
+
+  $sql = $conexion->query('SELECT * FROM candidatos WHERE idcandidato='.$_POST['id']);
+  $data = $sql->fetch_array();
+  
 ?>
 
 <!DOCTYPE html>
@@ -63,46 +68,54 @@ require("auth.php");
 </nav>
 <br>
 <div class="container">
-<form method="POST" action="agregarcandidato.php" enctype="multipart/form-data">
+<form method="POST" action="mantenimientoCandidato.php" enctype="multipart/form-data">
+    <input class="" type="hidden" name="_method" value="PUT">
+    <input class="" value="<?php print $data['idcandidato']; ?>" type="hidden" name="id">
     <div class="row">
         <div class="col-md form-group">
           <label for="">CIF</label>
-          <input type="text" name="cif" id="" class="form-control" placeholder="CIF sin guiones" aria-describedby="helpId" required minlength="10" maxlength="11" pattern="[0-9]{10,11}" title="Escribir CIF sin guiones para alumnos antiguos">
+          <input type="text" name="cif" value="<?php print $data['cif']; ?>" id="" class="form-control" placeholder="CIF sin guiones" aria-describedby="helpId" required minlength="10" maxlength="11" pattern="[0-9]{10,11}" title="Escribir CIF sin guiones para alumnos antiguos">
           <small id="helpId" class="text-muted">Campo es obligatorio</small>
         </div>
     </div>
-<div class="row">
+    <div class="row">
         <div class="col-md form-group">
           <label for="">Nombre</label>
-          <input type="text" name="nombre" id="" class="form-control" placeholder="" aria-describedby="helpId" required>
+          <input type="text" name="nombre" id="" value="<?php print $data['nombre'] ?>" class="form-control" placeholder="" aria-describedby="helpId" required>
           <small id="helpId" class="text-muted">Campo es obligatorio</small>
         </div>
         <div class="col-md form-group">
           <label for="">Apellido</label>
-          <input type="text" name="apellido" id="" class="form-control" placeholder="" aria-describedby="helpId" required>
+          <input type="text" name="apellido" id="" value="<?php print $data['apellido'] ?>" class="form-control" placeholder="" aria-describedby="helpId" required>
           <small id="helpId" class="text-muted">Campo es obligatorio</small>
         </div>      
-        <div class="col-md form-group">
-          <div class="custom-file">
+    </div>
+    <div class="row">
+      <div class="col-md form-group">
+          <div class="md">
+            <img src="fotos/<?php print $data['foto']; ?>" alt="" height="200">
+          </div>
+          <div class="custom-file w-25 p-1">
+            <input type="hidden" name="foto"  value="<?php print $data['foto']; ?>" >
             <input type="file" class="custom-file-input" id="customFile" name="customFile">
             <label class="custom-file-label" for="customFile">Choose file</label>
           </div>
-        </div>
-</div>
+      </div>
+    </div>
     <div class="row">
-    <div class="col-md form-group">
-    <label for="descripcion">Descripción</label>
-    <textarea class="form-control" name="descripcion" id="" rows="3"></textarea>
-    </div>        
+      <div class="col-md form-group">
+      <label for="descripcion">Descripción</label>
+      <textarea class="form-control" name="descripcion" id="" rows="3"><?php print $data['descripcion']; ?></textarea>
+      </div>        
     </div>
     <div class="row">
     <div class="col-md form-group">
     <label for="Propuesta">Propuesta</label>
-    <textarea class="form-control" name="propuesta" id="propuesta" rows="3"></textarea>
+    <textarea class="form-control" name="propuesta" id="propuesta" rows="3"><?php print $data['propuesta']; ?></textarea>
     <script>CKEDITOR.replace( 'propuesta' );</script>
     </div>        
     </div>
-    <button type="submit" class="btn btn-primary" name="guardar">Agregar</button>
+    <button type="submit" class="btn btn-primary" name="guardar">Actualizar</button>
     <input type="reset" class="btn btn-danger" value="Limpiar">
     </form>
   <div style='height: 20px'></div> 
