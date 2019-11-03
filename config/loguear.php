@@ -6,7 +6,9 @@ session_start();
 $usuario = $_POST['Usuario'];
 $password = $_POST['Password'];
 
-$query = "SELECT COUNT(*) as contar from usuarios where usuario = '$usuario' and password = '$password'";
+$pssencrypted = md5($password);
+
+$query = "SELECT COUNT(*) as contar from usuarios where usuario = '$usuario' and password = '$pssencrypted'";
 $consulta = mysqli_query($conexion, $query);
 $array = mysqli_fetch_array($consulta);
 
