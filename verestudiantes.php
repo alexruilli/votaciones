@@ -74,6 +74,7 @@ require("auth.php");
 </nav>
 <br>
 <div class="container">
+<h3>Ver Estudiantes Activos</h3>
 <table id="tabla" class="table table-condensed table-hover table-striped" width="100%" cellspacing="0">
 <thead>
 <tr>

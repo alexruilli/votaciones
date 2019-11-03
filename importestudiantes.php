@@ -1,5 +1,30 @@
 <?php
 require("auth.php");
+require('config/db.php');
+
+if (isset($_POST["import"])) {
+    
+    $fileName = $_FILES["file"]["tmp_name"];
+    
+    if ($_FILES["file"]["size"] > 0) {
+        
+        $file = fopen($fileName, "r");
+        
+        while (($column = fgetcsv($file, 10000, ",")) !== FALSE) {
+            $sqlInsert = "INSERT INTO estudiantes (pnombre, snombre, papellido, sapellido, cif)
+                          values ('" . $column[0] . "','" . $column[1] . "','" . $column[2] . "','" . $column[3] . "','" . $column[4] . "')";
+            $result = mysqli_query($conexion, $sqlInsert);
+            
+            if (! empty($result)) {
+                $type = "success";
+                $message = "Estudiantes Importados correctamente";
+            } else {
+                $type = "error";
+                $message = "Hubo un problema importando datos del CSV";
+            }
+        }
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -73,63 +98,83 @@ require("auth.php");
 </nav>
 <br>
 <div class="container">
-  <h3>Ingresar Estudiantes</h3>
-  <p>Si desea realizar un ingreso masivo de estudiantes hacer clíc en el siguiente enlace: </p><span><a href="importestudiantes.php" class="btn btn-primary">Importar</a></span>
-<div style="height:15px;"></div>
-<form id="frm" method="POST">
-    <div class="row">
-
-        <div class="col-md form-group">
-          <label for="">CIF</label>
-          <input type="text" name="cif" id="" class="form-control" placeholder="" aria-describedby="helpId" required minlength="10" maxlength="11" pattern="[0-9]{10,11}" title="Escribir CIF sin guiones para alumnos antiguos">
-          <small id="helpId" class="text-muted">Campo es obligatorio</small>
-        </div>
-
-     </div>
-      <div class="row">
-        <div class="col-md form-group">
-          <label for="">Primer Nombre</label>
-          <input type="text" name="pnombre" id="" class="form-control" placeholder="" aria-describedby="helpId" required>
-          <small id="helpId" class="text-muted">Campo es obligatorio</small>
-        </div>
-        <div class="col-md form-group">
-        <label for="">Segundo Nombre</label>
-        <input type="text" name="snombre" id="" class="form-control" placeholder="" aria-describedby="helpId">
-        <small id="helpId" class="text-muted">Campo no es obligatorio</small>
-        </div>       
-    </div>
-    <div class="row">
+  <h3>Importar Estudiante</h3>
+  <br>
+  <p>Esta sección permite importar archivos de CSV para ingresar estudiantes de forma masiva.</p>
+<form class="form-horizontal" action="" method="post" name="uploadCSV"
+    enctype="multipart/form-data">
     <div class="col-md form-group">
-          <label for="">Primer Apellido</label>
-          <input type="text" name="papellido" id="" class="form-control" placeholder="" aria-describedby="helpId" required>
-          <small id="helpId" class="text-muted">Campo es obligatorio</small>
+          <div class="custom-file">
+            <input type="file" class="custom-file-input" name="file" id="file" accept=".csv">
+            <label class="custom-file-label" for="customFile">Elegir Archivo</label>
+          </div>
         </div>
-        <div class="col-md form-group">
-          <label for="">Segundo Apellido</label>
-          <input type="text" name="sapellido" id="" class="form-control" placeholder="" aria-describedby="helpId">
-          <small id="helpId" class="text-muted">Campo no es obligatorio</small>
-        </div>           
-    </div>
-    <input type="submit" class="btn btn-primary" name="guardar" id="save" value="Guardar">
-    <input type="reset" class="btn btn-danger" value="Limpiar">
-    </form>
+        <button type="submit" id="submit" name="import" class="btn btn-primary">Importa</button>
+    <div id="labelError"></div>
+</form>
     <div style='height: 20px;'></div>
-    <script>
-    $(function(){
-            $("#save").click(function(e){
-              e.preventDefault();
-              var datos = $("#frm").serialize(); 
-              $.ajax({
-              type: "POST", 
-              url: "agregarestudiante.php",
-              data: datos, 
-              success: function(data){ Swal.fire('Mensaje', data, 'success'); $("#frm")[0].reset(); }, 
-              error: function(data) { Swal.fire('Mensaje', data, 'error') }
-              });
-          });
-    });
+    <script type="text/javascript">
+      $(document).ready(
+      function() {
+        $("#frmCSVImport").on(
+        "submit",
+        function() {
 
+          $("#response").attr("class", "");
+          $("#response").html("");
+          var fileType = ".csv";
+          var regex = new RegExp("([a-zA-Z0-9\s_\\.\-:])+("
+              + fileType + ")$");
+          if (!regex.test($("#file").val().toLowerCase())) {
+            $("#response").addClass("error");
+            $("#response").addClass("display-block");
+            $("#response").html(
+                "Invalid File. Upload : <b>" + fileType
+                    + "</b> Files.");
+            return false;
+          }
+          return true;
+        });
+      });
     </script>
+    <?php
+    $sqlSelect = "SELECT * FROM estudiantes";
+    $result = mysqli_query($conexion, $sqlSelect);
+                
+    if (mysqli_num_rows($result) > 0) {
+    ?>
+    <h4>Registro de Estudiantes ingresados</h4>
+    <table id='userTable' class="table table-condensed table-hover table-striped" width="100%" cellspacing="0">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>CIF</th>
+                <th>Primer Nombre</th>
+                <th>Segundo Nombre</th>
+                <th>Primer Apellido</th>
+                <th>Segundo Apellido</th>
+            </tr>
+        </thead>
+        <?php
+        while ($row = mysqli_fetch_array($result)) {
+        ?>
+
+        <tbody>
+            <tr>
+                <td><?php  echo $row['idestudiantes']; ?></td>
+                <td><?php  echo $row['cif']; ?></td>
+                <td><?php  echo $row['pnombre']; ?></td>
+                <td><?php  echo $row['snombre']; ?></td>
+                <td><?php  echo $row['papellido']; ?></td>
+                <td><?php  echo $row['sapellido']; ?></td>
+            </tr>
+        <?php
+        }
+        ?>
+        </tbody>
+    </table>
+    <?php } ?>    
 </div>  
 </body>
 </html>
+
