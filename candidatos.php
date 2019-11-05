@@ -60,8 +60,16 @@ require("auth.php");
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Resultados
         </a>
-      
-<br>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="vervotos.php">Ver Votos</a>
+          <a class="dropdown-item" href="verestadisticas.php">Ver Estadisticas</a>
+        </div>
+      </li>     
+    </ul>
+    <span class="navbar-text" style="padding-right:10px; color:#ffffff;">Usuario: <?php echo $usuario?> | </span>   
+    <a class="navbar-logout" href="config/logout.php" style="color:#fff;"><i class="fas fa-sign-out-alt"></i>Salir</a>
+    </div>
+</nav>
 <div class="container">
 <form method="POST" action="agregarcandidato.php" enctype="multipart/form-data">
     <div class="row">
@@ -87,6 +95,7 @@ require("auth.php");
           <div class="custom-file">
             <input type="file" class="custom-file-input" id="customFile" name="customFile">
             <label class="custom-file-label" for="customFile">Choose file</label>
+            <small id="helpId" class="text-muted">Imagenes formato de (500x500) jpg, gif, png</small>
           </div>
         </div>
 </div>

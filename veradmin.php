@@ -18,6 +18,8 @@ require("auth.php");
     <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css"/>
     <script type="text/javascript" src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
     <script src="js/ajax.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8.18.6/dist/sweetalert2.all.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-bootstrap-4@2.2.1/bootstrap-4.min.css">
   </head>
 <body>
 <nav class="navbar navbar-expand-lg">
@@ -74,11 +76,13 @@ require("auth.php");
 </nav>
 <br>
 <div class="container">
+  <h4>Ver Administradores</h4><br>
 <table id="tabla" class="table table-condensed table-hover table-striped" width="100%" cellspacing="0">
 <thead>
 <tr>
 <th data-column-id="idusuarios">ID</th>
 <th data-column-id="usuario">Usuario</th>
+<th data-column-id="acciones">Accion</th>
 </tr>
 </thead>
 <tbody>
@@ -90,12 +94,49 @@ require("auth.php");
                                     <tr>
                                         <td>'.$data['idusuarios'].'</td>
                                         <td><span class=""hidetext">'.$data['usuario'].'</span></td>
+                                        <td>
+                                        <button id="remove" class="btn btn-danger remove" data-id="'.$data['idusuarios'].'"><i class="far fa-trash-alt"></i></button>
+                                        </td>
                                     </tr>
                                 ';
                             }
                         ?>
 </tbody>
 </table>
-</div>  
+</div>
+<script type="text/javascript">
+
+	$(document).on('click', '.remove', function(){
+		var id = $(this).data('id');
+ 
+		swal.fire({
+		  	title: '¿Esta seguro?',
+		  	text: "¡No podra deshacer esta acción!",
+		  	type: 'warning',
+		  	showCancelButton: true,
+		  	confirmButtonColor: '#3085d6',
+		  	cancelButtonColor: '#d33',
+		  	confirmButtonText: 'Si, Eliminarlo!',
+		}).then((result) => {
+		  	if (result.value){
+		  		$.ajax({
+			   		url: 'borraradmin.php?action=delete',
+			    	type: 'POST',
+			       	data: 'id='+id,
+			       	dataType: 'json'
+			    })
+			    .done(function(response){
+             swal.fire('Borrado!', response.message, response.status);
+			    })
+			    .fail(function(){
+			     	swal.fire('Oops...', 'Algo salio mala!', 'error');
+			    });
+		  	}
+ 
+		})
+ 
+	});
+
+</script>
 </body>
 </html>

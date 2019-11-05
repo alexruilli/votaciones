@@ -15,6 +15,8 @@ require("auth.php");
     <script src="https://kit.fontawesome.com/526b5726f8.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8.18.6/dist/sweetalert2.all.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-bootstrap-4@2.2.1/bootstrap-4.min.css">
     <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css"/>
     <script type="text/javascript" src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
     <script src="js/ajax.js"></script>
@@ -83,6 +85,7 @@ require("auth.php");
 <th data-column-id="papellido">Primer Apellido</th>
 <th data-column-id="sapellido">Segundo Apellido</th>
 <th data-column-id="cif" date-type="numeric">CIF</th>
+<th data-column-id="acciones">Acciones</th>
 </tr>
 </thead>
 <tbody>
@@ -97,6 +100,9 @@ require("auth.php");
                                         <td>'.$data['papellido'].'</td>
                                         <td>'.$data['sapellido'].'</td>
                                         <td>'.$data['cif'].'</td>
+                                        <td>
+                                        <button id="remove" class="btn btn-danger remove" data-id="'.$data['idestudiantes'].'"><i class="far fa-trash-alt"></i></button>
+                                        </td>
                                     </tr>
                                 ';
                             }
@@ -104,5 +110,38 @@ require("auth.php");
 </tbody>
 </table>
 </div>  
+<script>
+
+$(document).on('click', '.remove', function(){
+		var id = $(this).data('id');
+ 
+		swal.fire({
+		  	title: '¿Esta seguro?',
+		  	text: "¡No podra deshacer esta acción!",
+		  	type: 'warning',
+		  	showCancelButton: true,
+		  	confirmButtonColor: '#3085d6',
+		  	cancelButtonColor: '#d33',
+		  	confirmButtonText: 'Si, Eliminarlo!',
+		}).then((result) => {
+		  	if (result.value){
+		  		$.ajax({
+			   		url: 'borrarestudiante.php?action=delete',
+			    	type: 'POST',
+			       	data: 'id='+id,
+			       	dataType: 'json'
+			    })
+			    .done(function(response){
+             swal.fire('Borrado!', response.message, response.status);
+			    })
+			    .fail(function(){
+			     	swal.fire('Oops...', 'Algo salio mala!', 'error');
+			    });
+		  	}
+ 
+		})
+ 
+	});
+</script>
 </body>
 </html>

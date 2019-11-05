@@ -14,10 +14,10 @@ if( is_uploaded_file($_FILES['customFile']['tmp_name'] )){
             $descripcion = mysqli_real_escape_string($conexion, $_REQUEST['descripcion']);
             $propuesta = mysqli_real_escape_string($conexion, $_REQUEST['propuesta']);
             $foto = $candidato->getImage();
-            $sql = "INSERT INTO candidatos (nombre, apellido, descripcion, propuesta, cif,foto) VALUES ('$nombre', '$apellido', '$descripcion', '$propuesta', '$cif','$foto')";
+            $sql = "INSERT INTO candidatos (nombre, apellido, descripcion, propuesta, cif, foto) VALUES ('$nombre', '$apellido', '$descripcion', '$propuesta', '$cif','$foto')";
             if(mysqli_query($conexion, $sql)){
 
-                header("location: candidatos.php");
+                header("location: vercandidatos.php");
             } else{
                 echo "ERROR: Could not able to execute $sql. " . mysqli_error($conexion);
             }
@@ -29,7 +29,9 @@ if( is_uploaded_file($_FILES['customFile']['tmp_name'] )){
         }
     }
     else{
-        print 'fallo con la imagen';
+        print 'Fallo al ingresar datos ';
+        echo '<br>';
+        echo '<a href="candidatos.php">volver</a>';
     }
 }
 else{

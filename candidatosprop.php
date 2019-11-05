@@ -56,6 +56,7 @@ if(!isset($cif)){
 <table id="tabla" class="table table-condensed table-hover table-striped" width="100%" cellspacing="0">
 <thead>
 <tr>
+<th data-column-id="foto">Foto</th>
 <th data-column-id="pnombre">Nombre</th>
 <th data-column-id="snombre">Apellido</th>
 <th data-column-id="papellido">Propuesta</th>
@@ -67,8 +68,10 @@ if(!isset($cif)){
                             include ('config\db.php');
                             $sql = $conexion->query('SELECT * FROM candidatos');
                             while($data = $sql->fetch_array()) {
+                              $foto = '<img src="fotos/'.$data['foto'].'" height="120" width="120">';
                                 echo '
                                     <tr>
+                                        <td>'.$foto.'</td>
                                         <td>'.$data['nombre'].'</td>
                                         <td>'.$data['apellido'].'</td>
                                         <td>'.$data['propuesta'].'</td>

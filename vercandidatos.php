@@ -77,11 +77,11 @@ require("auth.php");
 <table id="tabla" class="table table-condensed table-hover table-striped" width="100%" cellspacing="0">
 <thead>
 <tr>
+<th data-column-id="sapellido">Foto</th>
 <th data-column-id="pnombre">Nombre</th>
 <th data-column-id="snombre">Apellido</th>
 <th data-column-id="papellido">Propuesta</th>
 <th data-column-id="sapellido">Descripción</th>
-<th data-column-id="sapellido">Foto</th>
 <th data-column-id="Acciones">Acciones</th>
 </tr>
 </thead>
@@ -93,22 +93,22 @@ require("auth.php");
                                 $foto = '<img src="fotos/'.$data['foto'].'" height="120" width="120">';
                                 echo '
                                     <tr>
+                                        <td>'.$foto.'</td>
                                         <td>'.$data['nombre'].'</td>
                                         <td>'.$data['apellido'].'</td>
                                         <td>'.$data['propuesta'].'</td>
                                         <td>'.$data['descripcion'].'</td>
-                                        <td>'.$foto.'</td>
                                         <td> 
                                           <form method="POST" action="editarCandidato.php">
                                             <input name="_method" type="hidden" value="PUT">
                                             <input name="id" type="hidden" value='.$data['idcandidato'].'>
-                                            <button type="submit" class="btn btn-primary text-white">Editar</button>
+                                            <button type="submit" class="btn btn-primary text-white"><i class="fas fa-user-edit"></i> Editar </button>
                                           </form>
                                           <form method="POST" action="mantenimientoCandidato.php">
                                             <input name="_method" type="hidden" value="DELETE">
                                             <input name="id" type="hidden" value='.$data['idcandidato'].'>
                                             <input name="foto" type="hidden" value='.$data['foto'].'>
-                                            <button type="submit" class="btn btn-danger text-white">Eliminar</button>
+                                            <button type="submit" class="btn btn-danger text-white"><i class="far fa-trash-alt"></i> Eliminar</button>
                                           </form> 
                                         </td>
                                     </tr>
