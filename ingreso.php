@@ -7,11 +7,13 @@
     <link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link href="css/estilos.css" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <link href="css/custom.css" rel="stylesheet">
     <script src="https://kit.fontawesome.com/526b5726f8.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8.18.6/dist/sweetalert2.all.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-bootstrap-4@2.2.1/bootstrap-4.min.css">
     <style>
         .bd-placeholder-img {
             font-size: 1.125rem;
@@ -35,7 +37,7 @@
 <body>
 
 
-<form class="form-signin" action="validar.php" method="POST">
+<form class="form-signin" action="validar.php" method="POST" id="frm">
         <div class="text-center mb-4">
             <!-- <img class="mb-4" src="images/logo.jpg"> -->
             <h1 class="h3 mb-3 font-weight-normal">Iniciar sesión</h1>
@@ -46,15 +48,13 @@
             <label for="cif">CIF</label>
         </div>
         <div class="text-center mb-4">
-            <button class="btn btn-primary"type="submit">Ingresar</button>
+            <button class="btn btn-primary"type="submit" id="login">Ingresar</button>
         </div>
         <div class="text-center mb-4">
         <span>Eres administrador? </span><a href="login.php">Haz click aquí</a>
         </div>
         <p class="mt-5 mb-3 text-muted text-center">&copy; 2019</p>
     </form>
-
-
 
 </body>
 

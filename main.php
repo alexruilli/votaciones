@@ -21,10 +21,12 @@ $hoy = date('d-m-Y');
     <link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link href="css/custom.css" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://kit.fontawesome.com/526b5726f8.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8.18.6/dist/sweetalert2.all.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-bootstrap-4@2.2.1/bootstrap-4.min.css">
   </head>
 <body>
 
@@ -88,7 +90,7 @@ echo "<h3>En esta sección podras realizar el voto por el candidato</h3>
 <p class='vform-text text-muted'>
     - Votos no podrán ser cambiado una vez efectuados
 </p>
-<form action='agregarvoto.php' method='post'>
+<form action='agregarvoto.php' method='post' id='frm'>
 <label for=''>Votar por tu candidato</label>
 <select name='idcandidato'>
 <option value=''>Seleccionar candidato</option>";
@@ -111,7 +113,7 @@ echo "
 <input type='hidden' name='cif' value='$cif'>
 <input type='hidden' name='voto' value='1'>
 <input type='hidden' name='fechavoto' value='$fecha'>
-<button type='submit' name ='votar' class='btn btn-primary'>Votar</button>
+<button id='vote' type='submit' name ='votar' class='btn btn-primary'>Votar</button>
 </form>";
 
 }
