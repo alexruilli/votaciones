@@ -107,7 +107,8 @@ if (isset($_POST["import"])) {
     <div class="col-md form-group">
           <div class="custom-file">
             <input type="file" class="custom-file-input" name="file" id="file" accept=".csv">
-            <label class="custom-file-label" for="customFile">Elegir Archivo</label>
+            <label class="custom-file-label" for="file" id="filename">Elegir Archivo</label>
+            <div id="file-upload-filename"></div>
           </div>
         </div>
         <button type="submit" id="submit" name="import" class="btn btn-primary">Importa</button>
@@ -137,6 +138,19 @@ if (isset($_POST["import"])) {
           return true;
         });
       });
+      var input = document.getElementById( 'file' );
+      var infoArea = document.getElementById( 'filename' );
+
+      input.addEventListener( 'change', showFileName );
+
+      function showFileName( event ) {
+        
+        var input = event.srcElement;
+
+        var fileName = input.files[0].name;
+        
+        infoArea.textContent = fileName;
+    }
     </script>
     <?php
     $sqlSelect = "SELECT * FROM estudiantes";

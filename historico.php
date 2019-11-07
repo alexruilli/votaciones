@@ -85,7 +85,7 @@ require("auth.php");
 <option value="0">Seleccionar Año</option>
 <?php
 include('config\db.php');
-$sql = mysqli_query($conexion,"select distinct votoano from votos");
+$sql = mysqli_query($conexion,"SELECT distinct votoano FROM votos ORDER BY votoano ASC");
 while($row=mysqli_fetch_array($sql))
 {
 echo '<option value="'.$row['votoano'].'">'.$row['votoano'].'</option>';

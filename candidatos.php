@@ -95,9 +95,26 @@ require("auth.php");
         <label for="">Subir foto</label>
           <div class="custom-file">
             <input type="file" class="custom-file-input" id="customFile" name="customFile">
-            <label class="custom-file-label" for="customFile">Choose file</label>
+            <label class="custom-file-label" for="customFile" id="filename">Choose file</label>
+            <div id="file-upload-filename"></div>
             <small id="helpId" class="text-muted">Imagenes formato de (500x500) jpg, gif, png</small>
+            
           </div>
+          <script>
+              var input = document.getElementById( 'customFile' );
+              var infoArea = document.getElementById( 'filename' );
+
+              input.addEventListener( 'change', showFileName );
+
+              function showFileName( event ) {
+                
+                var input = event.srcElement;
+
+                var fileName = input.files[0].name;
+                
+                infoArea.textContent = fileName;
+               }
+          </script>
         </div>
 </div>
     <div class="row">
