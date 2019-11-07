@@ -1,12 +1,12 @@
 <?php
-require("auth.php");
+require("auth.php"); 
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Agregar Administradores</title>
+    <title>Administración</title>
     <link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32" />
     <link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -19,18 +19,20 @@ require("auth.php");
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-bootstrap-4@2.2.1/bootstrap-4.min.css">
   </head>
 <body>
-<nav class="navbar navbar-expand-lg">
+
+    <div class="principal">
+    <nav class="navbar navbar-expand-lg">
   <a class="navbar-brand" href="#"><img src="img/logow.png" width="50" height="30" class="d-inline-block align-top" alt="">Sistema Votacion</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"> <i class="fas fa-bars" style="color:#fff; font-size:28px;"></i></span>
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
-  <ul class="navbar-nav mr-auto">
+    <ul class="navbar-nav mr-auto">
       <li class="nav-item">
         <a class="nav-link" href="administracion.php">Home <span class="sr-only">(current)</span></a>
       </li>
-      <li class="nav-item dropdown active">
+      <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Administradores
         </a>
@@ -57,7 +59,7 @@ require("auth.php");
           <a class="dropdown-item" href="candidatos.php">Agregar</a>
         </div>
       </li>  
-      <li class="nav-item dropdown">
+      <li class="nav-item dropdown active">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Resultados
         </a>
@@ -71,42 +73,54 @@ require("auth.php");
     <span class="navbar-text" style="padding-right:10px; color:#ffffff;">Usuario: <?php echo $usuario?> | </span>   
     <a class="navbar-logout" href="config/logout.php" style="color:#fff;"><i class="fas fa-sign-out-alt"></i>Salir</a>
     </div>
-</nav>
-<br>
-<div class="container">
-<form id="frm" method="POST">
-      <div class="row">
-        <div class="col-md form-group">
-          <label for="">Usuario</label>
-          <input type="text" name="usuario" id="" class="form-control" placeholder="" aria-describedby="helpId" required>
-          <small id="helpId" class="text-muted">Campo es obligatorio</small>
-        </div>
-        <div class="col-md form-group">
-        <label for="">Contraseña</label>
-        <input type="text" name="contrasena" id="" class="form-control" placeholder="" aria-describedby="helpId" required>
-        <small id="helpId" class="text-muted">Campo es obligatorio</small>
-        </div>       
     </div>
-    <input type="submit" class="btn btn-primary" name="guardar" id="save" value="Guardar">
-    <input type="reset" class="btn btn-danger" value="Limpiar">
-    </form>
-    <div style='height: 20px;'></div>
-    <script>
-    $(function(){
-            $("#save").click(function(e){
-              e.preventDefault();
-              var datos = $("#frm").serialize(); 
-              $.ajax({
-              type: "POST", 
-              url: "agregaradmin.php",
-              data: datos, 
-              success: function(data){ Swal.fire('Mensaje', data, 'success'); $("#frm")[0].reset(); }, 
-              error: function(data) { Swal.fire('Mensaje', data, 'error') }
-              });
-          });
-    });
+</nav>
+<div class="container">
+<div style="height:15px;"></div>
+<h3>Ver Ganadores por Año</h3>
+<div style="height:15px;"></div>
+<p>Para ver el ganador de dicho año seleccione el año cuadro de opciones.</p>
+<div class="form-group">
+<label>Año: </label><select name="year" class="form-control">
+<option value="0">Seleccionar Año</option>
+<?php
+include('config\db.php');
+$sql = mysqli_query($conexion,"select distinct votoano from votos");
+while($row=mysqli_fetch_array($sql))
+{
+echo '<option value="'.$row['votoano'].'">'.$row['votoano'].'</option>';
+} ?>
+</select>
+</div>
+<div style="height: 30px;"></div>
+<div class="alert alert-primary ganador" role="alert">
+  <p>No se ha seleccionado año de votación</p>
+</div>
+<script type="text/javascript">
+$(document).ready(function()
+{
+$(".form-control").change(function()
+{
+var votoano =$(this).val();
+var post_id = 'id='+ votoano;
 
-    </script>
-</div>  
+$.ajax
+({
+type: "POST",
+url: "ganadores.php",
+data: post_id,
+cache: false,
+success: function(cities)
+{
+$(".ganador").html(cities);
+} 
+});
+
+});
+});
+</script>
+<div style="height: 20px;"></div>
+</div>
+</div>
 </body>
 </html>

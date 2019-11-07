@@ -72,6 +72,7 @@ require_once("config\db.php");
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="vervotos.php">Ver Votos</a>
           <a class="dropdown-item" href="verestadisticas.php">Ver Estadisticas</a>
+          <a class="dropdown-item" href="historico.php">Ver Historial</a>
         </div>
       </li>     
     </ul>
