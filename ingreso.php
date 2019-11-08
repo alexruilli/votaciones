@@ -51,7 +51,7 @@
             <button class="btn btn-primary"type="submit" id="login">Ingresar</button>
         </div>
         <div class="text-center mb-4">
-        <span>Eres administrador? </span><a href="login.php">Haz click aquí</a>
+        <span style='font-weight:bold;'>Eres administrador? </span><a style='font-weight:bold;' href="login.php">Haz click aquí</a>
         </div>
         <p class="mt-5 mb-3 text-muted text-center">&copy; 2019</p>
     </form>

@@ -29,8 +29,6 @@ $hoy = date('d-m-Y');
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-bootstrap-4@2.2.1/bootstrap-4.min.css">
   </head>
 <body>
-
-    <div class="principal">
     <nav class="navbar navbar-expand-lg">
   <a class="navbar-brand" href="#"><img src="img/logow.png" width="50" height="30" class="d-inline-block align-top" alt="">Sistema Votacion</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -54,8 +52,9 @@ $hoy = date('d-m-Y');
 <div class="container">
 
 <div style="height: 20px;"></div>
-<h2>Bienvenido a la votaciones de la facultad de ingeniería</h2> 
-<div style="height: 20px;"></div>
+<h3>Bienvenido a la votaciones de la facultad de ingeniería</h3> 
+<hr>
+<h5>Datos del estudiante  </h5>
 <?php
 require('config\db.php');
 $query = "SELECT * FROM estudiantes where cif = '$cif'";
@@ -71,8 +70,8 @@ echo "<dl class='row'>
   <dl>";
 
 ?>
-<div style="height: 20px;"></div>
-<h3>Fecha: <?php echo $hoy; ?>  </h3> 
+<hr>
+<h5><i class="far fa-calendar-alt"></i><span> Fecha de hoy: </span><?php echo $hoy; ?>  </h5> 
 
 <?php 
 // validar si se realizo voto
@@ -86,13 +85,14 @@ $votado = $vt['voto'];
 if(empty($estudiantevotando)) {
 
 
-echo "<h3>En esta sección podras realizar el voto por el candidato</h3>
+echo "<h4>En esta sección podras realizar el voto por el candidato</h4>
 <p class='vform-text text-muted'>
     - Votos no podrán ser cambiado una vez efectuados
 </p>
+<hr>
 <form action='agregarvoto.php' method='post' id='frm'>
-<label for=''>Votar por tu candidato</label>
-<select name='idcandidato'>
+<label for=''><i class='far fa-user-circle'></i> Votar por tu candidato</label>
+<select name='idcandidato' class='form-control form-control-sm' style='width: 50%;'>
 <option value=''>Seleccionar candidato</option>";
 
 
@@ -112,15 +112,20 @@ echo "
 </select>
 <input type='hidden' name='cif' value='$cif'>
 <input type='hidden' name='voto' value='1'>
-<input type='hidden' name='fechavoto' value='$fecha'>
-<button id='vote' type='submit' name ='votar' class='btn btn-primary'>Votar</button>
+<input type='hidden' name='fechavoto' value='$fecha'><br>
+
+<button id='vote' type='submit' name ='votar' class='btn btn-primary'><i class='fas fa-vote-yea'></i> Votar</button>
+
 </form>";
 
 }
 
 else {
+  $time = strtotime($vt["fechavoto"]);
+  $myFormatForView = date("d/m/Y", $time);
   echo "<div class='alert alert-success' role='alert'>";
-  echo "Ya has votado el día ".$vt["fechavoto"].".";
+  echo "<h4 class='alert-heading'>Mensaje:</h4>";
+  echo "<i class='far fa-calendar-check'></i> Ya has votado el día ".$myFormatForView.".";
   echo "</div>";
 }
 

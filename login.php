@@ -50,7 +50,7 @@
             <button class="btn btn-primary"type="submit">Ingresar</button>
         </div>
         <div class="text-center mb-4">
-        <span>Eres Estudiante? </span><a href="ingreso.php">Haz click aquí</a>
+        <span style='font-weight:bold;'>Eres Estudiante? </span><a style='font-weight:bold;' href="ingreso.php">Haz click aquí</a>
         </div>
         <div class="row">
     </div>
