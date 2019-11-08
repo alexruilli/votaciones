@@ -82,7 +82,7 @@ require("auth.php");
 <p>Para ver el ganador de dicho año seleccione el año cuadro de opciones.</p>
 <hr>
 <div class="form-group">
-<label>Año: </label><select name="year" class="form-control">
+<label><i class="far fa-clock"></i> Año: </label><select name="year" class="form-control">
 <option value="0">Seleccionar Año</option>
 <?php
 include('config\db.php');

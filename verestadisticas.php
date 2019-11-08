@@ -85,7 +85,7 @@ require_once("config\db.php");
 <h5>Gráficas Estadisiticas del Votación</h5>
 <hr>
 <button onclick="location.reload();" class="btn btn-outline-primary"><i class="fas fa-sync"></i></button>
-<span>Puede actualizar la gráfica pulsando el botón </span>
+<span>Puede actualizar pulsando el botón </span>
 <hr>
 </div>
 

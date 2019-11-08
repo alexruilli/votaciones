@@ -99,7 +99,7 @@ if (isset($_POST["import"])) {
 </nav>
 <br>
 <div class="container">
-  <h3>Importar Estudiante</h3>
+  <h4>Importar Estudiante</h4>  
   <br>
   <p>Esta sección permite importar archivos de CSV para ingresar estudiantes de forma masiva.</p>
 <form class="form-horizontal" action="" method="post" name="uploadCSV"
@@ -111,7 +111,7 @@ if (isset($_POST["import"])) {
             <div id="file-upload-filename"></div>
           </div>
         </div>
-        <button type="submit" id="submit" name="import" class="btn btn-primary">Importa</button>
+        <button type="submit" id="submit" name="import" class="btn btn-primary"><i class="fas fa-file-upload"></i> Importar</button>
     <div id="labelError"></div>
 </form>
     <div style='height: 20px;'></div>
@@ -158,7 +158,7 @@ if (isset($_POST["import"])) {
                 
     if (mysqli_num_rows($result) > 0) {
     ?>
-    <h4>Registro de Estudiantes ingresados</h4>
+    <h4>Registro de Estudiantes ingresados</h4><br>
     <table id='userTable' class="table table-condensed table-hover table-striped" width="100%" cellspacing="0">
         <thead>
             <tr>

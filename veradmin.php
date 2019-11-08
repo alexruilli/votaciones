@@ -77,7 +77,11 @@ require("auth.php");
 </nav>
 <br>
 <div class="container">
-  <h4>Ver Administradores</h4><br>
+  <h4>Ver Administradores</h4>
+  <hr>
+<button onclick="location.reload();" class="btn btn-outline-primary"><i class="fas fa-sync"></i></button>
+<span>Puede actualizar pulsando el botón </span>
+<hr>
 <table id="tabla" class="table table-condensed table-hover table-striped" width="100%" cellspacing="0">
 <thead>
 <tr>
