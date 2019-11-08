@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link href="css/estilos.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://kit.fontawesome.com/526b5726f8.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <style>
@@ -39,15 +40,15 @@
 
         <div class="form-label-group">
             <input type="text" class="form-control" id="username" name="Usuario" placeholder="Usuario">
-            <label for="username">Usuario</label>
+            <label for="username"><i class="fas fa-user"></i> Usuario</label>
         </div>
 
         <div class="form-label-group">
             <input type="password" id="inputPassword" class="form-control" name="Password" placeholder="Password">
-            <label for="password">Password</label>
+            <label for="password"><i class="fas fa-key"></i> Password</label>
         </div>
         <div class="text-center mb-4">
-            <button class="btn btn-primary"type="submit">Ingresar</button>
+            <button class="btn btn-primary"type="submit"><i class="fas fa-door-open"></i> Ingresar</button>
         </div>
         <div class="text-center mb-4">
         <span style='font-weight:bold;'>Eres Estudiante? </span><a style='font-weight:bold;' href="ingreso.php">Haz click aquí</a>

@@ -45,10 +45,10 @@
 
         <div class="form-label-group">
             <input type="text" class="form-control" id="cif" name="cif" placeholder="Escribir su carnet de estudiante" data-toggle="tooltip" data-placement="top" title="Escribir CIF sin guiones para alumnos antiguos" required minlength="10" maxlength="11" pattern="[0-9]{10,11}">
-            <label for="cif">CIF</label>
+            <label for="cif"><i class="far fa-id-card"></i> CIF</label>
         </div>
         <div class="text-center mb-4">
-            <button class="btn btn-primary"type="submit" id="login">Ingresar</button>
+            <button class="btn btn-primary"type="submit" id="login"><i class="fas fa-door-open"></i> Ingresar</button>
         </div>
         <div class="text-center mb-4">
         <span style='font-weight:bold;'>Eres administrador? </span><a style='font-weight:bold;' href="login.php">Haz click aquí</a>
