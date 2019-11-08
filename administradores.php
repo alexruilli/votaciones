@@ -74,6 +74,8 @@ require("auth.php");
 </nav>
 <br>
 <div class="container">
+  <h4>Agregar Administradores</h4>
+  <p>Ingrese los datos del nuevo administrador</p>
 <form id="frm" method="POST">
       <div class="row">
         <div class="col-md form-group">

@@ -103,6 +103,8 @@ require("auth.php");
 </tbody>
 </table>
 <br>
+<hr>
+<br>
 <h3>Total de votos por candidato</h3>
 <?php
 require('config\db.php');

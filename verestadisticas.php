@@ -80,8 +80,15 @@ require_once("config\db.php");
     <a class="navbar-logout" href="config/logout.php" style="color:#fff;"><i class="fas fa-sign-out-alt"></i>Salir</a>
     </div>
 </nav>
+<div class="container">
+<br>
+<h5>Gráficas Estadisiticas del Votación</h5>
+<hr>
+<button onclick="location.reload();" class="btn btn-outline-primary"><i class="fas fa-sync"></i></button>
+<span>Puede actualizar la gráfica pulsando el botón </span>
+<hr>
+</div>
 
-<button onclick="location.reload();" class="btn btn-outline-primary">Recargar</button>
 
 <div id="canvas-holder" style="width:70%">
 		<canvas id="chart-area"></canvas>
@@ -97,8 +104,8 @@ require_once("config\db.php");
 				datasets: [{
 					data: [
             <?php 
-
-            $sql = "SELECT idcandidato, count(*) as totalvotos FROM votos group by idcandidato";
+            $actualyear = date('Y');
+            $sql = "SELECT idcandidato, count(*) as totalvotos FROM votos WHERE votoano = '$actualyear' group by idcandidato";
             $result = $conexion->query($sql);
             while($nvotos = mysqli_fetch_array($result))
             {?>
@@ -138,7 +145,7 @@ require_once("config\db.php");
 				title: {
           display: true,
           fontSize:20,
-					text: 'Resultados Votaciones'
+					text: 'Resultados Votaciones' 
 				},
 				animation: {
 					animateScale: true,

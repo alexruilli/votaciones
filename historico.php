@@ -76,10 +76,11 @@ require("auth.php");
     </div>
 </nav>
 <div class="container">
-<div style="height:15px;"></div>
+<div style="height:25px;"></div>
 <h3>Ver Ganadores por Año</h3>
 <div style="height:15px;"></div>
 <p>Para ver el ganador de dicho año seleccione el año cuadro de opciones.</p>
+<hr>
 <div class="form-group">
 <label>Año: </label><select name="year" class="form-control">
 <option value="0">Seleccionar Año</option>
@@ -110,9 +111,9 @@ type: "POST",
 url: "ganadores.php",
 data: post_id,
 cache: false,
-success: function(cities)
+success: function(resultados)
 {
-$(".ganador").html(cities);
+$(".ganador").html(resultados);
 } 
 });
 

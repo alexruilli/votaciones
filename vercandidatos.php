@@ -75,6 +75,9 @@ require("auth.php");
 </nav>
 <br>
 <div class="container">
+  <h4>Ver candidatos de elecciones</h4>
+  <hr>
+  <br>
 <table id="tabla" class="table table-condensed table-hover table-striped" width="100%" cellspacing="0">
 <thead>
 <tr>
@@ -103,13 +106,13 @@ require("auth.php");
                                           <form method="POST" action="editarCandidato.php">
                                             <input name="_method" type="hidden" value="PUT">
                                             <input name="id" type="hidden" value='.$data['idcandidato'].'>
-                                            <button type="submit" class="btn btn-primary text-white"><i class="fas fa-user-edit"></i> Editar </button>
+                                            <button type="submit" class="btn btn-primary text-white" style="height: 42px; width: 42px"><i class="fas fa-user-edit"></i></button>
                                           </form>
                                           <form method="POST" action="mantenimientoCandidato.php">
                                             <input name="_method" type="hidden" value="DELETE">
                                             <input name="id" type="hidden" value='.$data['idcandidato'].'>
                                             <input name="foto" type="hidden" value='.$data['foto'].'>
-                                            <button type="submit" class="btn btn-danger text-white"><i class="far fa-trash-alt"></i> Eliminar</button>
+                                            <button type="submit" class="btn btn-danger text-white" style="height: 42px; width: 42px"><i class="far fa-trash-alt"></i></button>
                                           </form> 
                                         </td>
                                     </tr>

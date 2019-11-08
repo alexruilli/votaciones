@@ -72,6 +72,11 @@ require("auth.php");
     </div>
 </nav>
 <div class="container">
+  <div style="height:30px;"></div>
+  <h4>Agregar nuevo candidato</h4>
+  <p>ingreso los datos del nuevo candidato</p>
+  <hr>
+  <br>
 <form method="POST" action="agregarcandidato.php" enctype="multipart/form-data">
     <div class="row">
         <div class="col-md form-group">

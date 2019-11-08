@@ -69,6 +69,9 @@
 </nav>
 <br>
 <div class="container">
+  <h4>Editar el candidato</h4>
+  <p>actualice los datos del candidato</p>
+  <hr>
 <form method="POST" action="mantenimientoCandidato.php" enctype="multipart/form-data">
     <input class="" type="hidden" name="_method" value="PUT">
     <input class="" value="<?php print $data['idcandidato']; ?>" type="hidden" name="id">

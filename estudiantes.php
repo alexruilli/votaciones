@@ -74,9 +74,13 @@ require("auth.php");
 </nav>
 <br>
 <div class="container">
-  <h3>Ingresar Estudiantes</h3>
-  <p>Si desea realizar un ingreso masivo de estudiantes hacer clíc en el siguiente enlace: </p><span><a href="importestudiantes.php" class="btn btn-primary">Importar</a></span>
+  <h3>Nuevo Estudiantes</h3>
+  <h4>Ingreso másivo de datos</h4>
+  <p>Si desea realizar un ingreso masivo de estudiantes hacer clíc en el siguiente enlace: </p><span><a href="importestudiantes.php" class="btn btn-primary"><i class="fas fa-file-upload"></i> Importar</a></span>
 <div style="height:15px;"></div>
+<hr>
+<h4>Ingreso Individual de datos</h4>
+<p>Escriba los datos personales del estudiantes</p>
 <form id="frm" method="POST">
     <div class="row">
 
